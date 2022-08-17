@@ -1,6 +1,14 @@
+/*
+ * @Author: 
+ * @Date: 2022-08-17 14:28:46
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-08-17 16:31:09
+ * @Description: 
+ */
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Home from '../views/Home.vue'
+import TodoItem from "@/components/TodoItem.vue"
 
 Vue.use(VueRouter)
 
@@ -8,16 +16,17 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: Home
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path:'/test',
+    component:TodoItem
   }
+  // {
+  //   path: '/about',
+  //   name: 'about',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
+  // }
 ]
 
 const router = new VueRouter({
