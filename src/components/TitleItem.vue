@@ -1,6 +1,5 @@
-
 <template>
-  <div class="box">
+  <div class="title-box">
     <h1>
       {{title}}
     </h1>
@@ -19,7 +18,7 @@ export default class extends Vue {
 </script>
 
 <style scoped lang="scss">
-.box {
+.title-box {
   h1 {
     text-align: center;
   }

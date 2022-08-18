@@ -1,15 +1,13 @@
-<!--
- * @Author: 
- * @Date: 2022-08-17 14:28:46
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-08-17 19:18:07
- * @Description: 
--->
 <template>
   <div class="home">
-    <TitleItem title=""></TitleItem>
-    <HeaderItem @add-item="addItem"></HeaderItem>
-    <TodoItemList :todoList="todoList"></TodoItemList>
+    <title-item class="title"
+      title="待办事项"></title-item>
+    <header-item class="head"
+      @add-item="addItem"
+      @change-all-status="changeAllStatus"
+      :todoListLength="todoList.length"></header-item>
+    <todo-item-list class="todo"
+      :todoList="todoList"></todo-item-list>
   </div>
 </template>
 
@@ -22,6 +20,7 @@ import TitleItem from "@/components/TitleItem.vue";
 interface Item {
   id: string;
   isCompleted: boolean;
+  isShow: true;
   content: string;
 }
 
@@ -35,10 +34,37 @@ interface Item {
 export default class Home extends Vue {
   todoList: Item[] = [];
 
+  /**
+   * @description: HeaderItem组件添加后会调用该函数进行添加项目
+   * @param {*} item
+   * @return {*}
+   * @author:
+   */
   addItem(item: Item) {
     this.todoList.push(item);
-    console.log(item)
-    console.log(this.todoList)
+  }
+
+  /**
+   * @description: 改变所有待办事项的状态
+   * @param {*} status
+   * @return {*}
+   * @author:
+   */
+  changeAllStatus(status: boolean) {
+    this.todoList.forEach((item) => {
+      item.isCompleted = status;
+    });
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  max-width: 550px;
+  min-width: 360px;
+  margin: 0 auto;
+  .head {
+    margin-bottom: 15px;
+  }
+}
+</style>
